@@ -1,5 +1,7 @@
 package com.zhy.tmall.pojo;
 
+import javafx.beans.property.SetProperty;
+
 public class PropertyValue {
     private Integer id;
 
@@ -8,6 +10,17 @@ public class PropertyValue {
     private Integer ptid;
 
     private String value;
+
+    /* 非数据库字段 */
+    private Property property;
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
 
     public Integer getId() {
         return id;
