@@ -8,6 +8,7 @@ import com.zhy.tmall.pojo.ProductImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,6 +76,35 @@ public class ProductService {
     public void setFirstProductImage(List<Product> ps) {
         for (Product p : ps) {
             setFirstProductImage(p);
+        }
+    }
+
+    public void fill(Category category) {
+        List<Product> products = list(category.getId());
+        category.setProducts(products);
+
+    }
+
+    public void fill(List<Category> categories) {
+        for (Category category : categories) {
+            fill(category);
+        }
+    }
+
+    public void fillByRow(List<Category> categories) {
+        int numEachRow = 8;
+        for (Category category : categories) {
+            List<Product> products = category.getProducts(); //该分类下的所有产品
+            List<List<Product>> productsByRow = new ArrayList<>(); //装有产品集合的集合，每个产品集合内有8个产品或者小于8个产品。
+            for (int start = 0; start < products.size(); start += numEachRow) {
+                int end = start + numEachRow;
+
+                end = end > products.size() ? products.size() : end; //判断有没有超过products的总大小
+                List<Product> productsOfEachRow = products.subList(start, end);
+                productsByRow.add(productsOfEachRow);
+            }
+            category.setProductsByRow(productsByRow);
+
         }
     }
 
