@@ -57,10 +57,10 @@ public class PropertyValueService {
 
     public List<PropertyValue> list(int pid) {
         PropertyValueExample propertyValueExample = new PropertyValueExample();
-        propertyValueExample.createCriteria().andPtidEqualTo(pid);
+        propertyValueExample.createCriteria().andPidEqualTo(pid);
         List<PropertyValue> propertyValues = propertyValueMapper.selectByExample(propertyValueExample);
         for (PropertyValue propertyValue : propertyValues) {
-            Property property = propertyService.get(propertyValue.getPid());
+            Property property = propertyService.get(propertyValue.getPtid());
             propertyValue.setProperty(property);
         }
         return propertyValues;

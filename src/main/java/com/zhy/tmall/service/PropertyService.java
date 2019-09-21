@@ -23,16 +23,16 @@ public class PropertyService {
         propertyMapper.insert(property);
     }
 
-    public void delete(Integer pid){
-        propertyMapper.deleteByPrimaryKey(pid);
+    public void delete(Integer id){
+        propertyMapper.deleteByPrimaryKey(id);
     }
 
     public void update(Property property){
         propertyMapper.updateByPrimaryKeySelective(property);
     }
 
-    public Property get(Integer pid){
-        return propertyMapper.selectByPrimaryKey(pid);
+    public Property get(Integer id){
+        return propertyMapper.selectByPrimaryKey(id);
     }
 
     public List<Property> list(Integer cid){
